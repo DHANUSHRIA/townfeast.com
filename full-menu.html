@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Menu</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('menufull.jpg');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      background-repeat: no-repeat;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    nav {
+      background-color: rgba(0, 0, 0, 0.6);
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.1em;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #e07a5f;
+    }
+
+    header {
+      background-image: url('menufull.jpg'); 
+      background-size: cover;
+      background-position: center;
+      background-repeat: no-repeat;
+      padding: 60px 20px 20px;
+      text-align: center;
+      color: white;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3em;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.6);
+    }
+
+    .menu-container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      padding: 30px;
+    }
+
+    .menu-item {
+      background-color: #fff;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      margin: 15px;
+      width: 300px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      opacity: 0;
+      transform: translateY(20px);
+      animation: fadeInUp 0.6s ease forwards;
+    }
+
+    .menu-item:nth-child(1) { animation-delay: 0.2s; }
+    .menu-item:nth-child(2) { animation-delay: 0.4s; }
+    .menu-item:nth-child(3) { animation-delay: 0.6s; }
+
+    @keyframes fadeInUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .menu-item img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-top-left-radius: 15px;
+      border-top-right-radius: 15px;
+    }
+
+    .details {
+      padding: 15px;
+    }
+
+    .details h3 {
+      margin-top: 0;
+      text-transform: capitalize;
+      color: #bc6c25;
+    }
+
+    .details p {
+      color: #444;
+      font-size: 0.95em;
+    }
+
+    .add-to-cart {
+      background-color: #e07a5f;
+      color: white;
+      padding: 10px 20px;
+      font-size: 1em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+      transition: background-color 0.3s;
+    }
+
+    .add-to-cart:hover {
+      background-color: #f4a261;
+    }
+
+    #cart-badge {
+      background-color: red;
+      color: white;
+      border-radius: 50%;
+      padding: 2px 8px;
+      margin-left: 5px;
+      font-size: 0.8em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="menu.html">Menu</a>
+    <a href="reservation.html">Reservation</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">Cart <span id="cart-badge" style="display: none;"></span></a>
+  </nav>
+
+  <!-- Page Header -->
+  <header>
+    <h1>Menu</h1>
+  </header>
+
+  <!-- Menu Items -->
+  <div class="menu-container">
+
+    <div class="menu-item">
+      <img src="naan.jpg" alt="Naan">
+      <div class="details">
+        <h3>Naan</h3>
+        <p>Soft, fluffy Indian flatbread baked in a traditional tandoor.</p>
+        <p><strong>Price: $5.99</strong></p>
+        <button class="add-to-cart" data-name="Naan" data-price="5.99">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <img src="panner butter masala.jpg" alt="Paneer Butter Masala">
+      <div class="details">
+        <h3>Paneer Butter Masala</h3>
+        <p>Cottage cheese cubes in a rich, buttery tomato gravy.</p>
+        <p><strong>Price: $9.99</strong></p>
+        <button class="add-to-cart" data-name="Paneer Butter Masala" data-price="9.99">Add to Cart</button>
+      </div>
+    </div>
+
+    <div class="menu-item">
+      <img src="poori.jpg" alt="Poori">
+      <div class="details">
+        <h3>Poori</h3>
+        <p>Deep-fried Indian bread served hot with masala curry.</p>
+        <p><strong>Price: $4.99</strong></p>
+        <button class="add-to-cart" data-name="Poori" data-price="4.99">Add to Cart</button>
+      </div>
+    </div>
+    <div class="menu-item">
+      <img src="ven pongal.jpg" alt="ven pongal">
+      <div class="details">
+        <h3>Venpongal</h3>
+        <p>Deep-fried Indian bread served hot with masala curry.</p>
+        <p><strong>Price: $4.99</strong></p>
+        <button class="add-to-cart" data-name="" data-price="4.99">Add to Cart</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    // Add item to localStorage cart
+    function addToCart(name, price) {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      const existingItem = cart.find(item => item.name === name);
+      if (existingItem) {
+        existingItem.quantity += 1;
+      } else {
+        cart.push({ name, price, quantity: 1 });
+      }
+      localStorage.setItem('cart', JSON.stringify(cart));
+      alert(`${name} added to your cart!`);
+      updateCartCount();
+    }
+
+    // Update cart item count
+    function updateCartCount() {
+      let cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
+
+      const cartBadge = document.getElementById('cart-badge');
+      if (totalItems > 0) {
+        cartBadge.style.display = 'inline-block';
+        cartBadge.textContent = totalItems;
+      } else {
+        cartBadge.style.display = 'none';
+      }
+    }
+
+    // Attach event listeners
+    document.querySelectorAll('.add-to-cart').forEach(button => {
+      button.addEventListener('click', function () {
+        const name = this.getAttribute('data-name');
+        const price = parseFloat(this.getAttribute('data-price'));
+        addToCart(name, price);
+      });
+    });
+
+    // Initialize cart badge on page load
+    window.addEventListener('load', updateCartCount);
+  </script>
+
+</body>
+</html>

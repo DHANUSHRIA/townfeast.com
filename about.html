@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Us</title>
+  <style>
+    /* Navigation Bar Styles */
+    nav {
+      background-color: #333;
+      position: sticky;
+      top: 0;
+      width: 100%;
+      z-index: 1000;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    nav ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    nav ul li {
+      margin: 10px 20px;
+    }
+
+    nav ul li a {
+      text-decoration: none;
+      color: white;
+      font-size: 1.2em;
+      padding: 10px 20px;
+      border-radius: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    nav ul li a:hover {
+      background-color: #e76f51;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-image: url('WhatsApp Image 2025-04-24 at 12.55.00_6b52a25c.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+    }
+
+    .overlay {
+      background-color: rgba(0, 0, 0, 0.6);
+      min-height: 100vh;
+      padding: 40px;
+      box-sizing: border-box;
+    }
+
+    .content {
+      max-width: 800px;
+      margin: 0 auto;
+      background: rgba(0, 0, 0, 0.6);
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    h1 {
+      font-size: 3em;
+      text-align: center;
+      text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8);
+    }
+
+    p {
+      font-size: 1.2em;
+      line-height: 1.6;
+      text-align: justify;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.5em;
+      }
+
+      p {
+        font-size: 1.1em;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- Navigation Bar -->
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="menu.html">Menu</a></li>
+      <li><a href="reservation.html">Reservation</a></li>
+      <li><a href="contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <div class="overlay">
+    <div class="content">
+      <h1>About Our Restaurant</h1>
+      <p>
+        Welcome to our restaurant where tradition meets taste. Rooted in centuries of Indian culinary heritage, our kitchen celebrates the essence of home-cooked meals infused with rich spices and love. Our chefs bring you timeless recipes with a modern twist, capturing the soul of Indian flavors.
+      </p>
+      <p>
+        We are committed to delivering not only the best dining experience but also the warmth of culture, history, and genuine hospitality. Whether you're here for a family dinner, a romantic date, or just to enjoy an evening of flavors, we welcome you with open arms.
+      </p>
+    </div>
+  </div>
+</body>
+</html>

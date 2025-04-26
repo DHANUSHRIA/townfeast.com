@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Checkout</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      color: #333;
+    }
+
+    body {
+      background-image: url('reserve.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+    }
+
+    /* Navigation Bar */
+    nav {
+      background-image: url('checkout.jpg');
+      background-size: cover;
+      background-position: center center;
+      background-attachment: fixed;
+      display: flex;
+      justify-content: center;
+      padding: 15px 0;
+      position: sticky;
+      top: 0;
+      z-index: 10;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 20px;
+      font-size: 1.1em;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #e07a5f;
+    }
+
+    header {
+      background-color: black;
+      color: white;
+      padding: 30px 20px;
+      text-align: center;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3em;
+    }
+
+    .checkout-container {
+      padding: 30px;
+      max-width: 1000px;
+      margin: 0 auto;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-size: 1.2em;
+      margin-bottom: 5px;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 10px;
+      font-size: 1.1em;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    .checkout-total {
+      text-align: right;
+      margin-top: 20px;
+      font-size: 1.5em;
+      font-weight: bold;
+    }
+
+    .checkout-button {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      background-color: #e07a5f;
+      color: white;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 30px;
+      transition: background-color 0.3s;
+    }
+
+    .checkout-button:hover {
+      background-color: #f4a261;
+    }
+
+    /* Payment Section */
+    .payment-section {
+      display: none;
+      background-color: rgba(255, 255, 255, 0.9);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .payment-section input {
+      margin: 10px 0;
+      padding: 10px;
+      width: 100%;
+      font-size: 1em;
+    }
+
+    .payment-section .payment-button {
+      background-color: #e07a5f;
+      color: white;
+      padding: 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .payment-section .payment-button:hover {
+      background-color: #f4a261;
+    }
+
+  </style>
+</head>
+<body>
+
+  <!-- Navigation Bar -->
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="menu.html">Menu</a>
+    <a href="reservation.html">Reservation</a>
+    <a href="contact.html">Contact</a>
+    <a href="cart.html">Cart</a>
+  </nav>
+
+  <!-- Page Header -->
+  <header>
+    <h1>Checkout</h1>
+  </header>
+
+  <!-- Checkout Form -->
+  <div class="checkout-container">
+    <form id="checkout-form">
+      <div class="form-group">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required />
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Phone Number:</label>
+        <input type="text" id="phone" name="phone" required />
+      </div>
+
+      <div class="checkout-total" id="checkout-total">
+        <p>Total: 0.00</p>
+      </div>
+
+      <button type="submit" class="checkout-button">Place Order</button>
+    </form>
+  </div>
+
+  <!-- Payment Section -->
+  <div class="payment-section" id="payment-section">
+    <h2>Enter Payment Details</h2>
+    <form id="payment-form">
+      <div class="form-group">
+        <label for="card-number">Card Number:</label>
+        <input type="text" id="card-number" name="card-number" placeholder="Enter card number" required />
+      </div>
+
+      <div class="form-group">
+        <label for="expiry-date">Expiry Date:</label>
+        <input type="text" id="expiry-date" name="expiry-date" placeholder="MM/YY" required />
+      </div>
+
+      <div class="form-group">
+        <label for="cvv">CVV:</label>
+        <input type="text" id="cvv" name="cvv" placeholder="Enter CVV" required />
+      </div>
+
+      <button type="submit" class="payment-button">Complete Payment</button>
+    </form>
+  </div>
+
+  <script>
+    // Get the cart data from localStorage
+    function updateCheckoutTotal() {
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+      let totalPrice = 0;
+      cart.forEach(item => {
+        totalPrice += item.price * item.quantity;
+      });
+
+      // Display total in the checkout page
+      document.getElementById('checkout-total').querySelector('p').textContent = `Total: ${totalPrice.toFixed(2)}`;
+    }
+
+    // Event listener for form submission
+    document.getElementById('checkout-form').addEventListener('submit', function(e) {
+      e.preventDefault(); // Prevent the form from submitting the usual way
+
+      // Get customer info from the form
+      const name = document.getElementById('name').value;
+      const phone = document.getElementById('phone').value;
+
+      // Retrieve cart data from localStorage
+      const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+      // Prepare the order data
+      const orderData = {
+        customerName: name,
+        customerPhone: phone,
+        cart: cart,
+        totalAmount: cart.reduce((acc, item) => acc + item.price * item.quantity, 0),
+      };
+
+      // Display the payment form after order details are submitted
+      document.getElementById('payment-section').style.display = 'block';
+      document.getElementById('checkout-form').style.display = 'none';
+
+      // Optionally, you can store the orderData to pass it to payment submission later
+      console.log(orderData); // This is just for debugging
+    });
+
+    // Initialize checkout page
+    window.addEventListener('load', updateCheckoutTotal);
+  </script>
+
+</body>
+</html>
+
+
+
+
+
